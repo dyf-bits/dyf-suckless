@@ -2,11 +2,10 @@
 This repository contains my builds of various suckless software. 
 
 ## Installation
-Clone the repository with:
-```git clone https://github.com/dyf-bits/dyf-suckless.git```
-
-Then you can install each program like so:
-```cd suckless\dwm
+After cloning, you can install each program by jumping to its directory and issuing ```make```.
+To install dwm for instance, you would do:
+```git clone https://github.com/dyf-bits/dyf-suckless.git
+cd dyf-suckless/dwm
 sudo make clean install
 ```
 

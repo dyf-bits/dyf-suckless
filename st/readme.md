@@ -1,13 +1,11 @@
 # St (Suckless Terminal)
 
-This is my build of St. It is based on the build by [siduck's](https://github.com/siduck/st). Mainly changed the theme to [Catppuccin](https://github.com/catppuccin/catppuccin).
+This is my build of St. It is based on the build by [siduck](https://github.com/siduck/st). Mainly changed the theme to [Catppuccin](https://github.com/catppuccin/catppuccin).
 
 ## Install
 
 ```
-git clone 
-cd st
-sudo make install
+sudo make clean install
 ```
 
 ## Dependencies

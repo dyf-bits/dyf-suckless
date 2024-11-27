@@ -1,6 +1,10 @@
 # Introduction
 This is my build of [dwm](https://dwm.suckless.org/), the tiling window manager of suckless.
 
+## Installation
+
+```sudo make clean install```
+
 ## Patches Applied
 The following patches were applied to add functionality to dwm:
 - [actualfullscreen](https://dwm.suckless.org/patches/actualfullscreen/): make programs go full-screen

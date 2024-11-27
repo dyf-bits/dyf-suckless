@@ -1,0 +1,72 @@
+# configure monitors 
+xrandr --output HDMI-1 --mode 2560x1440 --rotate left --rate 144 --pos 0x0
+xrandr --output DP-4 --mode 2560x1440 --rate 144 --pos 1440x490
+
+# reduce blue light at sunset (numbers are lat:long coordinates)
+redshift -l 27:49 &
+
+# set keyboard's auto repeat delay, and repeat rate 
+xset r rate 300 50
+
+# this fixes the mouse cursor becoming gigantic after running xrandr
+# xresources should contain this line: Xcursor.size: 16
+xrdb -merge ~/.config/dwm/xresources
+
+# lock the screen after <minutes> of inactivity using slock
+xautolock -time 50 -locker slock &
+
+# start picom to add animations and transitions (configure in .config/picom.conf)
+picom &
+
+# status information in statusbar
+~/Code/suckless/dwmblocks-async/build/dwmblocks &
+
+#start policykit agent to listen to gui programs that ask for sudo
+lxqt-policykit-agent &
+
+# start the notification daemon
+dunst &
+
+# start window manager
+exec ./dwm
+
+! ====== gruvbox colors ======
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
+
+#dmenu appearance
+#dmenu.font : font or font set
+# normal (unselected colors)
+dmenu.background : #282828
+dmenu.foreground : #b16286
+# selected colors
+dmenu.background : #928374
+dmenu.selbackground : #689d6a
+dmenu.selforeground : #282828
+

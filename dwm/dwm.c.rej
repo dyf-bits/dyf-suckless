@@ -1,0 +1,28 @@
+--- dwm.c
++++ dwm.c
+@@ -169,6 +170,7 @@ typedef struct {
+ } Rule;
+ 
+ /* function declarations */
++static void apply_fribidi(char *str);
+ static void applyrules(Client *c);
+ static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact);
+ static void arrange(Monitor *m);
+@@ -268,6 +270,7 @@ static void zoom(const Arg *arg);
+ /* variables */
+ static const char broken[] = "broken";
+ static char stext[256];
++static char fribidi_text[256];
+ static int screen;
+ static int sw, sh;           /* X display screen geometry width, height */
+ static int bh;               /* bar height */
+@@ -824,7 +842,8 @@ drawbar(Monitor *m)
+ 	if ((w = m->ww - tw - x) > bh) {
+ 		if (m->sel) {
+ 			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+-			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
++			apply_fribidi(m->sel->name);
++			drw_text(drw, x, 0, w, bh, lrpad / 2, fribidi_text, 0);
+ 			if (m->sel->isfloating)
+ 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+ 		} else {

@@ -1,10 +1,6 @@
 # Introduction
 This is my build of [dwm](https://dwm.suckless.org/), the tiling window manager of suckless.
 
-## Installation
-
-```sudo make clean install```
-
 ## Patches Applied
 The following patches were applied to add functionality to dwm:
 - [actualfullscreen](https://dwm.suckless.org/patches/actualfullscreen/): make programs go full-screen
@@ -14,7 +10,7 @@ The following patches were applied to add functionality to dwm:
 - [colorbar](https://dwm.suckless.org/patches/colorbar/): color the top bar
 - [hide_vacant_tags](https://dwm.suckless.org/patches/hide_vacant_tags/): hide tags that have no windows opened on them
 - [layoutmenu](https://dwm.suckless.org/patches/layoutmenu/): choose between layouts by right-clicking the layout icon in the top bar
-- [movestack](https://dwm.suckless.org/patches/movestack/): move windows with ```super-mouse drag```
+- [movestack](https://dwm.suckless.org/patches/movestack/): move windows with keybindings
 - [pertag](https://dwm.suckless.org/patches/pertag/): each tag can have its default layout
 - [resizehere](https://dwm.suckless.org/patches/resizehere/): don't move mouse cursor when resizing a window
 - [restartsig](https://dwm.suckless.org/patches/restartsig/): restart dwm with a keybinding
@@ -26,9 +22,27 @@ The following patches were applied to add functionality to dwm:
 - [vanitygaps](https://dwm.suckless.org/patches/vanitygaps/): add gaps between windows
 - [warp](https://dwm.suckless.org/patches/warp/): mouse cursor follows active window
 
-## Notes
-- layoutmenu requires ```xmenu``` to be installed. modify ```layoutmenu.sh``` if necessary then place it in PATH
-- colorbar makes the status bar gray, but cannot modify the right part of the bar. This is because it would conflict with the status2d patch
-- dwmblocks was tested with "Ubuntu Nerd Font Propo". Choosing a different font might require some formatting modifications
-- if you also use my build of dwmblocks, make sure to modify ```sb-kbselect``` to your desired keyboard layouts
+## Installation
+
+```sudo make clean install```
+
+Make sure you have ```libxft``` and ```libxinerama``` installed or the compilation will fail.
+
+## Optional Packages
+
+- Fonts: ```Ubuntu Nerd Font Propo``` for the statusbar, ```BitstromWera Nerd Font Mono``` for the **st** terminal emulator
+- ```sx``` to start X with a custom script instead of ```~/.xinitrc```
+- ```xmenu``` - simple custom menu for X
+- ```picom``` for round borders and fade-in/out animations
+
+#`# Notes
+- **layoutmenu** requires ```xmenu``` to be installed. modify ```layoutmenu.sh``` if necessary then place it in your ```PATH```
+- **colorbar** makes the status bar gray, but cannot modify the right part of the bar. This is because it would conflict with the **status2d** patch
+- **dwmblocks** was tested with "Ubuntu Nerd Font Propo". Choosing a different font might require some formatting modifications
+- **st** has its default font set to "BitstromWera Nerd Font Mono"
+- if you also use my build of dwmblocks, make sure to modify the ```sb-kbselect``` script to your desired keyboard layouts
+- ```alt-shift``` switches the keyboard layout to Arabic. You can change this behaviour in ```config.h```
+- default Mod key is ```super```
 - most of my builds use the catppuccin theme
+- my startup script is ```sdwm```. I start my X session with ```sx sh sdwm``` instead of ```startx```
+

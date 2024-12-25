@@ -9,8 +9,7 @@ static char *font = "BitstromWera Nerd Font Mono:pixelsize=16:antialias=true:aut
 /* Spare fonts */
 static char *font2[] = {
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
-	//"DejaVu Sans Mono:pixelsize=16:antialias=true:autohint=true",
-	"Noto Kufi Arabic:pixelsize=16:antialias=true:autohint=true",
+	"Ubuntu Nerd Font:pixelsize=16:antialias=true:autohint=true",
 };
 
 static int borderpx = 2;
@@ -42,8 +41,6 @@ int const sixelbyteorder = LSBFirst;
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 2.4;
 static float chscale = 1.0;
-//static float cwscale = 2.4;
-//static float chscale = 1.0;
 
 /*
  * word delimiter string
@@ -129,48 +126,54 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.9;
-float alphaUnfocused = 0.8;
+float alpha = 0.8;
+float alphaUnfocused = 0.6;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#45475A",
-	"#F38BA8",
-	"#A6E3A1",
-	"#F9E2AF",
-	"#89B4FA",
-	"#F5C2E7",
-	"#94E2D5",
-	"#BAC2DE",
+	"black",
+	"red3",
+	"green3",
+	"yellow3",
+	"blue2",
+	"magenta3",
+	"cyan3",
+	"gray90",
 
 	/* 8 bright colors */
-	"#585B70",
-	"#F38BA8",
-	"#A6E3A1",
-	"#F9E2AF",
-	"#89B4FA",
-	"#F5C2E7",
-	"#94E2D5",
-	"#A6ADC8",
+	"gray50",
+	"red",
+	"green",
+	"yellow",
+	"#5c5cff",
+	"magenta",
+	"cyan",
+	"white",
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-[256] = "#CDD6F4", /* default foreground colour */
-[257] = "#1E1E2E", /* default background colour */
-[258] = "#F5E0DC", /*575268*/
+	"#add8e6", /* 256 -> cursor */
+	"#555555", /* 257 -> rev cursor*/
+	"#000000", /* 258 -> bg */
 	"#e5e5e5", /* 259 -> fg */
+	// catpuccin colors
+	
+[260] = "#CDD6F4", /* default foreground colour */
+[261] = "#1E1E2E", /* default background colour */
+[262] = "#F5E0DC", /*575268*/
+[263] = "#11111B"
 };
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultbg = 257;
-unsigned int bg = 257, bgUnfocused = 257;
-unsigned int defaultfg = 256;
-unsigned int defaultcs = 258;
+unsigned int defaultbg = 261;
+unsigned int bg = 261, bgUnfocused = 263;
+unsigned int defaultfg = 260;
+unsigned int defaultcs = 262;
 unsigned int defaultrcs = 257;
 unsigned int selectionfg = 258;
 unsigned int selectionbg = 259;
@@ -290,13 +293,13 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,   {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,     {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,        {.i =  0} },
-	{ TERMMOD,              XK_plus,        zoom,            {.f = +2} },
-	{ TERMMOD,              XK_underscore,  zoom,            {.f = -2} },
+	{ TERMMOD,              XK_Prior,       zoom,            {.f = +1} },
+	{ TERMMOD,              XK_Next,        zoom,            {.f = -1} },
 	{ TERMMOD,              XK_Home,        zoomreset,       {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,        {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,       {.i =  0} },
-	{ TERMMOD,              XK_braceright,  changealpha,     {.f = +0.05} },
-	{ TERMMOD,              XK_braceleft,   changealpha,     {.f = -0.05} },
+	{ TERMMOD,              XK_O,           changealpha,     {.f = +0.05} },
+	{ TERMMOD,              XK_P,           changealpha,     {.f = -0.05} },
 	//{ TERMMOD,              XK_,           changealphaunfocused, {.f = +0.05} },
 	//{ TERMMOD,              XK_,           changealphaunfocused, {.f = -0.05} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,       {.i = -1}, S_PRI },

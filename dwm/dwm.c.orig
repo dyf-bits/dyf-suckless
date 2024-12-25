@@ -21,7 +21,6 @@
  * To understand everything else, start reading main().
  */
 #include <errno.h>
-#include <fribidi.h>
 #include <locale.h>
 #include <signal.h>
 #include <stdarg.h>
@@ -197,7 +196,6 @@ static void drawbars(void);
 static int drawstatusbar(Monitor *m, int bh, char* text);
 static void enternotify(XEvent *e);
 static void expose(XEvent *e);
-static void apply_fribidi(char *str);
 static void focus(Client *c);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
@@ -289,7 +287,6 @@ static const char autostartsh[] = "autostart.sh";
 static Systray *systray = NULL;
 static const char broken[] = "broken";
 static const char dwmdir[] = "dwm";
-static char fribidi_text[1024];
 static const char localshare[] = ".local/share";
 static char stext[1024];
 static int statussig;
@@ -344,21 +341,6 @@ struct Pertag {
 struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
 
 /* function implementations */
-void
-apply_fribidi(char *str)
-{
-	FriBidiStrIndex len = strlen(str);
-	FriBidiChar logical[1024];
-	FriBidiChar visual[1024];
-	FriBidiParType base = FRIBIDI_PAR_ON;
-	FriBidiCharSet charset;
-
-	charset = fribidi_parse_charset("UTF-8");
-	len = fribidi_charset_to_unicode(charset, str, len, logical);
-	fribidi_log2vis(logical, len, &base, visual, NULL, NULL, NULL);
-	fribidi_unicode_to_charset(charset, visual, len, fribidi_text);
-}
-
 void
 applydefaultlayouts()
 {
@@ -1075,10 +1057,7 @@ drawbar(Monitor *m)
 		if (m->sel) {
 //			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
 			drw_setscheme(drw, scheme[m == selmon ? SchemeInfoSel : SchemeInfoNorm]); //mid bar active colors
-			//drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
-
-			apply_fribidi(m->sel->name);
-			drw_text(drw, x, 0, w, bh, lrpad / 2, fribidi_text, 0);
+			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
 			if (m->sel->isfloating)
 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
 		} else {

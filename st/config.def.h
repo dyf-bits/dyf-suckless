@@ -10,7 +10,7 @@ static char *font = "BitstromWera Nerd Font Mono:pixelsize=16:antialias=true:aut
 static char *font2[] = {
 /*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
 	//"DejaVu Sans Mono:pixelsize=16:antialias=true:autohint=true",
-	"Noto Kufi Arabic:pixelsize=16:antialias=true:autohint=true",
+	"Vazir Code:pixelsize=16:antialias=true:autohint=true",
 };
 
 static int borderpx = 2;

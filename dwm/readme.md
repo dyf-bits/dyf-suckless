@@ -35,7 +35,7 @@ Make sure you have ```libxft``` and ```libxinerama``` installed or the compilati
 - ```xmenu``` - simple custom menu for X
 - ```picom``` for round borders and fade-in/out animations
 
-#`# Notes
+## Notes
 - **layoutmenu** requires ```xmenu``` to be installed. modify ```layoutmenu.sh``` if necessary then place it in your ```PATH```
 - **colorbar** makes the status bar gray, but cannot modify the right part of the bar. This is because it would conflict with the **status2d** patch
 - **dwmblocks** was tested with "Ubuntu Nerd Font Propo". Choosing a different font might require some formatting modifications
